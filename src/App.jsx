@@ -1,28 +1,27 @@
 import axios from "axios";
+import { useState } from "react";
 import "./App.css";
-import {useState} from "react";
 
 export default function App() {
 
-  const [name, setName] = useState("");
-  const [predictedAge, setPredictedAge] = useState({});
+  const [excuse, setExcuse] = useState("");
 
-  function pAge(){
-    axios.get(`http://api.agicy.io/?name=${name}`).then((response)=>{
-      setPredictedAge(response.data);
-      console.log(response.data);
+  function getExcuse(e){
+    axios.get(`https://excuser-three.vercel.app/v1/excuse/${e}`).then((res) =>{
+      console.log(res.data[0].excuse);
+      setExcuse(res.data[0].excuse);
     })
   }
+
 
   return (
    <div className="app">
 
-     <input onChange={(e)=>setName(e.target.value)} type="text" placeholder="Enter your name"/>
-     <button onClick={pAge}>Age</button>
-     <h3>Your name is: {predictedAge?.name}</h3>
-     <h3>Predicted Age: {predictedAge?.age}</h3>
-    
-     
+    <h1>Generate an excuse</h1>
+    <button onClick={()=>getExcuse('party')}>Party</button>
+    <button onClick={()=>getExcuse('family')}>Family</button>
+    <button onClick={()=>getExcuse('office')}>Office</button>
+    <h1>{excuse}</h1>
    </div>
   );
 }
