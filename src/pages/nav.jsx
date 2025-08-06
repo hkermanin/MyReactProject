@@ -8,6 +8,7 @@ function Navbar(){
     <nav>
       <Link to={'/'}>Home</Link> |
       <Link to={'/cat'}>Cat</Link> |
+      <Link to={'/counter'}>Counter</Link> |
       <Link to={'/contact'}>Contact</Link> |
       <Link to={'/about'}> About</Link> |
       <Link to={'/profile'}>Profile</Link>
